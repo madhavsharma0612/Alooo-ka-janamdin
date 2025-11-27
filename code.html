@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, Kaushiki!</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fecfef, #a8edea, #fed6e3);
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 3em;
+            color: #ff6b6b;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+        .countdown {
+            font-size: 2em;
+            margin: 20px 0;
+            color: #4ecdc4;
+        }
+        .balloons {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        .balloon {
+            position: absolute;
+            width: 50px;
+            height: 70px;
+            background: radial-gradient(circle, #ff6b6b, #ffeaa7);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: float 6s ease-in-out infinite;
+        }
+        .balloon:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .balloon:nth-child(2) { left: 20%; animation-delay: 1s; }
+        .balloon:nth-child(3) { left: 30%; animation-delay: 2s; }
+        .balloon:nth-child(4) { left: 40%; animation-delay: 3s; }
+        .balloon:nth-child(5) { left: 50%; animation-delay: 4s; }
+        .balloon:nth-child(6) { left: 60%; animation-delay: 5s; }
+        .balloon:nth-child(7) { left: 70%; animation-delay: 6s; }
+        .balloon:nth-child(8) { left: 80%; animation-delay: 7s; }
+        .balloon:nth-child(9) { left: 90%; animation-delay: 8s; }
+        @keyframes float {
+            0%, 100% { transform: translateY(100vh); }
+            50% { transform: translateY(0vh); }
+        }
+        .confetti {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        .confetti-piece {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ffd93d;
+            animation: fall 5s linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-100vh) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="balloons">
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+    </div>
+    <div class="confetti">
+        <!-- Confetti pieces will be added via JS -->
+    </div>
+    <div class="container">
+        <h1>Happy 16th Birthday, Kaushiki! 🎉</h1>
+        <p>Dear Kaushiki,</p>
+        <p>On this special day, December 6th, we celebrate you turning 16! May this year bring you endless joy, new adventures, and all the happiness you deserve. You're growing into an amazing person, and we're so proud of you. Here's to sweet 16 and many more!</p>
+        <p>With lots of love,<br>Your Friends and Family</p>
+        <div class="countdown" id="countdown">Calculating...</div>
+    </div>
+
+    <script>
+        // Countdown to December 6th
+        function updateCountdown() {
+            const now = new Date();
+            const birthday = new Date(now.getFullYear(), 11, 6); // December is month 11 (0-indexed)
+            if (now > birthday) {
+                birthday.setFullYear(now.getFullYear() + 1);
+            }
+            const diff = birthday - now;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            document.getElementById('countdown').innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s until your birthday!`;
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Add confetti
+        for (let i = 0; i < 50; i++) {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti-piece';
+            confetti.style.left = Math.random() * 100 + '%';
+            confetti.style.animationDelay = Math.random() * 5 + 's';
+            document.querySelector('.confetti').appendChild(confetti);
+        }
+    </script>
+</body>
+</html>
